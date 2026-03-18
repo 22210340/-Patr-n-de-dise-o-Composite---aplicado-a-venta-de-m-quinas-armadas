@@ -1,4 +1,4 @@
-# -Patr-n-de-dise-o-Composite---aplicado-a-venta-de-m-quinas-armadas
+# -Patratron de diseño-Composite---aplicado-a-venta-de-m-quinas-armadas
 
 # 🖥️ Reporte de Práctica — Patrón de Diseño Composite
 ### Armado y Venta de Computadoras — Oasis PC
@@ -40,11 +40,16 @@ El **Patrón Composite** es un patrón de diseño estructural que permite compon
 ### Vista de Árbol
 
 ```
-              [CajaPC] ← Compuesto (nodo raíz)
-             /    |    \
-      [GamaBaja] [GamaMedia] [GamaAlta] ← Compuestos (nodos intermedios)
-        / \          |           / \
-    [CPU] [RAM]    [CPU]     [CPU] [RAM] ← Hojas (Pieza individual)
+[CajaPC: Catálogo Oasis PC] ← Compuesto (nodo raíz)
+                                    /               |                \
+                                   /                |                 \
+                [GamaBaja: Oasis Entry]   [GamaMedia: Oasis Pro]   [GamaAlta: Oasis Ultra]
+                 ← Compuesto               ← Compuesto               ← Compuesto
+                 /  |  |  |  |  \          /  |  |  |  |  |  |  \    / | | | | | | | \
+                /   |  |  |  |   \        /   |  |  |  |  |  |   \  /  | | | | | | |  \
+           [CPU][RAM][HDD][MB][PSU][GAB] [CPU][RAM][SSD][HDD][GPU][MB][PSU][GAB]  ...
+            ↑                                                                      ↑
+     Hojas (Pieza individual)                                          Hojas (Pieza individual)
 ```
 
 ### ¿Por qué usarlo en este caso?
@@ -82,10 +87,7 @@ using System.Collections.Generic;
 
 namespace OasisPC
 {
-    /// <summary>
-    /// Clase abstracta que define el contrato para piezas individuales
-    /// y para cajas/grupos de piezas. Basada en la clase Componente vista en clase.
-    /// </summary>
+   
     public abstract class ComponentePC
     {
         private string _nombre;
@@ -123,11 +125,7 @@ using System.Collections.Generic;
 
 namespace OasisPC
 {
-    /// <summary>
-    /// Representa una pieza individual de hardware (CPU, RAM, etc.).
-    /// Es una hoja en el árbol — no puede tener hijos.
-    /// Equivalente a la clase Archivo del código de clase.
-    /// </summary>
+    
     public class Pieza : ComponentePC
     {
         private double _precio;
@@ -171,11 +169,7 @@ using System.Collections.Generic;
 
 namespace OasisPC
 {
-    /// <summary>
-    /// Representa una caja/paquete de computadora o una agrupación de piezas.
-    /// Es el nodo compuesto del árbol — puede contener Piezas u otras CajaPC.
-    /// Equivalente a la clase Directorio del código de clase.
-    /// </summary>
+   
     public class CajaPC : ComponentePC
     {
         private List<ComponentePC> _hijos;
@@ -245,7 +239,7 @@ namespace OasisPC
             Console.WriteLine("║   Patrón de Diseño: Composite            ║");
             Console.WriteLine("╚══════════════════════════════════════════╝");
 
-            // ─── GAMA BÁSICA ──────────────────────────────────────────────
+            
             CajaPC gamaBasica = new CajaPC(
                 "Gama Básica — Oasis Entry",
                 "Ideal para ofimática, navegación y tareas cotidianas.");
@@ -263,7 +257,7 @@ namespace OasisPC
             gamaBasica.AgregarHijo(new Pieza(
                 "Gabinete", "Cougar MX340 Mid-Tower", "Cougar", 450.00));
 
-            // ─── GAMA MEDIA ───────────────────────────────────────────────
+            
             CajaPC gamaMedia = new CajaPC(
                 "Gama Media — Oasis Pro",
                 "Balance óptimo entre rendimiento y precio. Streaming, trabajo remoto, multimedia.");
@@ -285,7 +279,7 @@ namespace OasisPC
             gamaMedia.AgregarHijo(new Pieza(
                 "Gabinete", "NZXT H510 Flow", "NZXT", 1200.00));
 
-            // ─── GAMA ALTA ────────────────────────────────────────────────
+            
             CajaPC gamaAlta = new CajaPC(
                 "Gama Alta — Oasis Ultra",
                 "Máximo rendimiento. Gaming 4K, diseño 3D, edición de video y cargas de IA.");
@@ -309,7 +303,7 @@ namespace OasisPC
             gamaAlta.AgregarHijo(new Pieza(
                 "Gabinete", "Lian Li O11 Dynamic EVO XL", "Lian Li", 3200.00));
 
-            // ─── CATÁLOGO RAÍZ ────────────────────────────────────────────
+            // RAÍZ 
             // Nodo raíz que agrupa todas las gamas (igual que "raiz" en el código de clase)
             CajaPC catalogo = new CajaPC(
                 "Catálogo Oasis PC 2026",
@@ -319,10 +313,10 @@ namespace OasisPC
             catalogo.AgregarHijo(gamaMedia);
             catalogo.AgregarHijo(gamaAlta);
 
-            // ─── MOSTRAR ÁRBOL COMPLETO ───────────────────────────────────
+            
             catalogo.Mostrar();
 
-            // ─── RESUMEN GENERAL ──────────────────────────────────────────
+            
             Console.WriteLine();
             Console.WriteLine("╔══════════════════════════════════════════╗");
             Console.WriteLine("║              RESUMEN DE PRECIOS          ║");
@@ -427,73 +421,10 @@ catalogo (CajaPC — raíz)
 
 La siguiente imagen representa la **salida esperada en consola** al ejecutar el programa en Visual Studio / .NET:
 
-```
-╔══════════════════════════════════════════╗
-║     OASIS PC — Catálogo de Equipos       ║
-║   Patrón de Diseño: Composite            ║
-╚══════════════════════════════════════════╝
-
-📦 === Catálogo Oasis PC 2026 ===
-   Línea completa de equipos ensamblados para todo tipo de usuario.
-   Componentes:
-
-    📦 === Gama Básica — Oasis Entry ===
-       Ideal para ofimática, navegación y tareas cotidianas.
-       Componentes:
-          🔩 [CPU]
-             Descripción : Intel Core i3-12100 3.3 GHz
-             Fabricante  : Intel
-             Precio      : $2800.00 MXN
-          🔩 [RAM]
-             Descripción : Kingston 8 GB DDR4 3200 MHz
-             Fabricante  : Kingston
-             Precio      : $550.00 MXN
-          🔩 [Disco Duro]
-             Descripción : Seagate Barracuda 1 TB HDD
-             Fabricante  : Seagate
-             Precio      : $700.00 MXN
-          🔩 [Tarjeta Madre]
-             Descripción : ASUS Prime H510M-E
-             Fabricante  : ASUS
-             Precio      : $1200.00 MXN
-          🔩 [Fuente de Poder]
-             Descripción : EVGA 450W 80+ White
-             Fabricante  : EVGA
-             Precio      : $600.00 MXN
-          🔩 [Gabinete]
-             Descripción : Cougar MX340 Mid-Tower
-             Fabricante  : Cougar
-             Precio      : $450.00 MXN
-       ─────────────────────────────────────
-       💰 Precio total del paquete: $6300.00 MXN
-
-    📦 === Gama Media — Oasis Pro ===
-       Balance óptimo entre rendimiento y precio...
-       ...
-       💰 Precio total del paquete: $14280.00 MXN
-
-    📦 === Gama Alta — Oasis Ultra ===
-       Máximo rendimiento. Gaming 4K, diseño 3D...
-       ...
-       💰 Precio total del paquete: $58900.00 MXN
-
-   ─────────────────────────────────────
-   💰 Precio total del paquete: $79480.00 MXN
-
-╔══════════════════════════════════════════╗
-║              RESUMEN DE PRECIOS          ║
-╠══════════════════════════════════════════╣
-║  Gama Básica  :   6300.00 MXN           ║
-║  Gama Media   :  14280.00 MXN           ║
-║  Gama Alta    :  58900.00 MXN           ║
-╠══════════════════════════════════════════╣
-║  TOTAL CATÁLOGO:  79480.00 MXN          ║
-╚══════════════════════════════════════════╝
-
-Presione cualquier tecla para salir...
-```
-
-> 💡 **Nota:** Para obtener la captura real, compila el proyecto en Visual Studio (o con `dotnet run` en .NET 6+) y reemplaza esta sección con un screenshot del programa en ejecución.
+![Salida 1](imagen1.png)
+![Salida 2](imagen2.png)
+![Salida 3](imagen3.png)
+![Salida 4](imagen4.png)
 
 ---
 
