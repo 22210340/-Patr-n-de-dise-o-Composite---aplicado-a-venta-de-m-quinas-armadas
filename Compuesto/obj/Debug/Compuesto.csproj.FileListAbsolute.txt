@@ -1,0 +1,7 @@
+C:\Users\Wasky\source\repos\Compuesto\bin\Debug\Compuesto.exe.config
+C:\Users\Wasky\source\repos\Compuesto\bin\Debug\Compuesto.exe
+C:\Users\Wasky\source\repos\Compuesto\bin\Debug\Compuesto.pdb
+C:\Users\Wasky\source\repos\Compuesto\obj\Debug\Compuesto.csproj.AssemblyReference.cache
+C:\Users\Wasky\source\repos\Compuesto\obj\Debug\Compuesto.csproj.CoreCompileInputs.cache
+C:\Users\Wasky\source\repos\Compuesto\obj\Debug\Compuesto.exe
+C:\Users\Wasky\source\repos\Compuesto\obj\Debug\Compuesto.pdb
