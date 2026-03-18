@@ -430,9 +430,9 @@ La siguiente imagen representa la **salida esperada en consola** al ejecutar el 
 
 ## 6. Conclusión
 
-El desarrollo de esta práctica permitió comprender de manera práctica y aplicada uno de los patrones estructurales más útiles del catálogo GoF: el **Patrón Composite**. A lo largo de la implementación se identificó con claridad la diferencia entre los roles de *hoja* y *compuesto*, y cómo ambos pueden ser tratados de forma transparente por el cliente mediante una interfaz común.
+Al Eloborar la practica pues nos da una nocion mas para comprender de manera practica y aplicada los patrones estructurares mas utiles en este caso el Patron Composite al realizar la practica se identifica con claridad la diferencia de los roles de hojas y compuesto ya que ambos son transparentesntes por el cliente mediante un interfaz comun.
 
-Adaptar el ejemplo de directorios y archivos visto en clase al dominio de venta de computadoras resultó un ejercicio revelador. La analogía es directa: así como un directorio contiene archivos u otros directorios, una caja de venta puede contener piezas individuales u otras cajas. La operación que antes calculaba el tamaño total ahora calcula el precio total de forma recursiva, lo cual demuestra que el patrón es **independiente del dominio** y puede reutilizarse en distintos contextos sin modificar su lógica estructural.
+Adaptar el ejemplo de los directorios y archivos visto en clase a la venta de computadoras con componentes resulto un ejersicio revelador asi como la analogia es directa asi como un directorio contienes arcivhos u otros directorios unacaja de venta puede contener piezas individuales u otras cajas la operación que antes calculaba el tamaño total ahora calcula el precio total de forma recursiva, lo cual demuestra que el patrón es **independiente del dominio** y puede reutilizarse en distintos contextos sin modificar su lógica estructural.
 
 Uno de los aprendizajes más importantes fue el principio de **uniformidad**: el cliente (en `Main`) no necesita saber si está interactuando con una pieza individual o con un paquete completo. Esto reduce el acoplamiento y mejora la extensibilidad del sistema; si en el futuro se quisiera agregar una nueva categoría de gama o un subpaquete (por ejemplo, un kit de periféricos), bastaría con crear un nuevo `CajaPC` y agregarlo al árbol sin modificar el código existente.
 
@@ -441,10 +441,6 @@ Finalmente, esta práctica refuerza el valor de los patrones de diseño como her
 ---
 
 ## 7. Referencias
-
-- Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). *Design Patterns: Elements of Reusable Object-Oriented Software*. Addison-Wesley Professional.
-
-- Freeman, E., & Robson, E. (2020). *Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software* (2nd ed.). O'Reilly Media.
 
 - Refactoring.Guru. (2024). *Composite Design Pattern*. Recuperado de https://refactoring.guru/design-patterns/composite
 
@@ -456,5 +452,3 @@ Finalmente, esta práctica refuerza el valor de los patrones de diseño como her
 
 ---
 
-*Reporte elaborado para entrega en repositorio GitHub | Formato Markdown*  
-*© 2026 — Práctica de Patrones de Diseño de Software*
